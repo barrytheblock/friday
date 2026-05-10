@@ -1,0 +1,25 @@
+# ── Secrets ───────────────────────────────────
+config.py          # contains your API keys — never upload this
+
+# ── Runtime files ─────────────────────────────
+*.pyc
+__pycache__/
+*.pyo
+
+# ── Personal data ─────────────────────────────
+friday_notes.txt
+friday_todos.txt
+
+# ── Audio / temp ──────────────────────────────
+*.mp3
+*.wav
+
+# ── Whisper model cache ───────────────────────
+.cache/
+
+# ── VS Code ───────────────────────────────────
+.vscode/
+
+# ── Python env ────────────────────────────────
+venv/
+.env

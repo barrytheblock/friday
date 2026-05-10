@@ -1,0 +1,198 @@
+{
+  "meta": {
+    "version": "2.0",
+    "instructions": "You are FRIDAY — a sophisticated AI assistant. You are professional, precise, calm, and occasionally dry. You do not ramble. You are confident and competent.\n\nHOW TO RESPOND:\n\n1. ACTION REQUESTS — When the user wants something DONE, respond with ONLY a command string. Nothing else. No explanation.\n   - Command strings start with: -\n   - Chain multiple actions using ' then ' between them\n   - Always end a command chain with tts() to confirm the action\n   - Keep tts() messages short and professional\n\n2. QUESTIONS / CONVERSATION — Respond in plain text. Be concise.\n\nCOMMAND SYNTAX RULES:\n- Every command string starts with: -\n- String arguments use double quotes: func(\"value\")\n- Numeric arguments have no quotes: func(42)\n- Chain with ' then ': -cmd1() then cmd2() then tts(\"Done.\")\n- Use wait(seconds) when an app needs time to load before the next step\n- Always end chains with tts() to confirm\n\nEXAMPLES:\nUser: open chrome → -open_chrome() then tts(\"Chrome is ready.\")\nUser: play thunderstruck by ac dc → -spotify_search(\"AC/DC Thunderstruck\") then tts(\"Playing AC/DC.\")\nUser: set volume to 40 → -set_volume(40) then tts(\"Volume set to 40.\")\nUser: open chrome and go to youtube → -open_chrome() then wait(1.5) then open_url(\"https://youtube.com\") then tts(\"YouTube is open.\")\nUser: set a 10 minute timer for pasta → -set_timer(600, \"pasta\") then tts(\"10 minute pasta timer started.\")\nUser: what time is it → -get_time()\nUser: who invented the telephone → Alexander Graham Bell, 1876.\nUser: search google for python tutorials → -search_google(\"python tutorials\") then tts(\"Searching Google.\")\nUser: shutdown the computer → -shutdown_pc() then tts(\"Shutting down. Goodbye.\")\n\nCRITICAL RULES:\n- Action → command string starting with - and NOTHING ELSE\n- Question → plain text only\n- Never mix plain text with a command string\n- Never add markdown or asterisks to command strings\n- If a command needs a file path and none was given, ask for it in plain text"
+  },
+  "categories": {
+    "system_control": {
+      "description": "Control system audio, power, display, and OS functions",
+      "commands": [
+        { "name": "set_volume",        "syntax": "set_volume(level)",      "description": "Set system master volume to a percentage (0-100)" },
+        { "name": "volume_up",         "syntax": "volume_up(amount)",      "description": "Increase system volume by given amount (default 10)" },
+        { "name": "volume_down",       "syntax": "volume_down(amount)",    "description": "Decrease system volume by given amount (default 10)" },
+        { "name": "mute",              "syntax": "mute()",                 "description": "Mute system audio" },
+        { "name": "unmute",            "syntax": "unmute()",               "description": "Unmute system audio" },
+        { "name": "screenshot",        "syntax": "screenshot()",           "description": "Take a screenshot and save it to the desktop with a timestamp" },
+        { "name": "lock_screen",       "syntax": "lock_screen()",          "description": "Lock the Windows screen immediately" },
+        { "name": "sleep_pc",          "syntax": "sleep_pc()",             "description": "Put the computer into sleep mode" },
+        { "name": "restart_pc",        "syntax": "restart_pc()",           "description": "Restart the computer with a 5 second delay" },
+        { "name": "shutdown_pc",       "syntax": "shutdown_pc()",          "description": "Shut down the computer with a 5 second delay" },
+        { "name": "hibernate_pc",      "syntax": "hibernate_pc()",         "description": "Hibernate the computer, saving session to disk" },
+        { "name": "show_desktop",      "syntax": "show_desktop()",         "description": "Minimize all windows to reveal the desktop" },
+        { "name": "task_manager",      "syntax": "task_manager()",         "description": "Open Windows Task Manager" },
+        { "name": "empty_recycle_bin", "syntax": "empty_recycle_bin()",    "description": "Permanently empty the Windows Recycle Bin" },
+        { "name": "set_brightness",    "syntax": "set_brightness(level)",  "description": "Set screen brightness percentage (0-100)" },
+        { "name": "night_mode_on",     "syntax": "night_mode_on()",        "description": "Enable Windows Night Light blue light filter" },
+        { "name": "night_mode_off",    "syntax": "night_mode_off()",       "description": "Disable Windows Night Light blue light filter" }
+      ]
+    },
+    "app_control": {
+      "description": "Open, close, and switch between applications",
+      "commands": [
+        { "name": "open_app",          "syntax": "open_app(\"name\")",         "description": "Open any app by name or executable. Use when no specific open_ command exists" },
+        { "name": "close_app",         "syntax": "close_app(\"name\")",        "description": "Force-close a running app by its process name" },
+        { "name": "switch_app",        "syntax": "switch_app(\"name\")",       "description": "Bring a running app window to the foreground" },
+        { "name": "open_discord",      "syntax": "open_discord()",            "description": "Open Discord" },
+        { "name": "close_discord",     "syntax": "close_discord()",           "description": "Close Discord" },
+        { "name": "open_chrome",       "syntax": "open_chrome()",             "description": "Open Google Chrome" },
+        { "name": "open_firefox",      "syntax": "open_firefox()",            "description": "Open Mozilla Firefox" },
+        { "name": "open_edge",         "syntax": "open_edge()",               "description": "Open Microsoft Edge" },
+        { "name": "open_spotify",      "syntax": "open_spotify()",            "description": "Open Spotify desktop app" },
+        { "name": "open_vscode",       "syntax": "open_vscode()",             "description": "Open Visual Studio Code" },
+        { "name": "open_steam",        "syntax": "open_steam()",              "description": "Open Steam" },
+        { "name": "open_minecraft",    "syntax": "open_minecraft()",          "description": "Open Minecraft Launcher" },
+        { "name": "open_notepad",      "syntax": "open_notepad()",            "description": "Open Windows Notepad" },
+        { "name": "open_calculator",   "syntax": "open_calculator()",         "description": "Open Windows Calculator" },
+        { "name": "open_file_explorer","syntax": "open_file_explorer()",      "description": "Open Windows File Explorer" },
+        { "name": "open_settings",     "syntax": "open_settings()",           "description": "Open Windows Settings" },
+        { "name": "open_obs",          "syntax": "open_obs()",                "description": "Open OBS Studio" },
+        { "name": "open_vlc",          "syntax": "open_vlc()",                "description": "Open VLC Media Player" },
+        { "name": "open_word",         "syntax": "open_word()",               "description": "Open Microsoft Word" },
+        { "name": "open_excel",        "syntax": "open_excel()",              "description": "Open Microsoft Excel" },
+        { "name": "open_powerpoint",   "syntax": "open_powerpoint()",         "description": "Open Microsoft PowerPoint" },
+        { "name": "open_outlook",      "syntax": "open_outlook()",            "description": "Open Microsoft Outlook" },
+        { "name": "open_teams",        "syntax": "open_teams()",              "description": "Open Microsoft Teams" },
+        { "name": "open_zoom",         "syntax": "open_zoom()",               "description": "Open Zoom" },
+        { "name": "open_slack",        "syntax": "open_slack()",              "description": "Open Slack" },
+        { "name": "open_telegram",     "syntax": "open_telegram()",           "description": "Open Telegram" },
+        { "name": "open_paint",        "syntax": "open_paint()",              "description": "Open Microsoft Paint" },
+        { "name": "open_snipping_tool","syntax": "open_snipping_tool()",      "description": "Open Windows Snipping Tool" },
+        { "name": "open_terminal",     "syntax": "open_terminal()",           "description": "Open Windows Terminal" },
+        { "name": "open_powershell",   "syntax": "open_powershell()",         "description": "Open PowerShell" },
+        { "name": "open_pycharm",      "syntax": "open_pycharm()",            "description": "Open JetBrains PyCharm" },
+        { "name": "open_roblox",       "syntax": "open_roblox()",             "description": "Open Roblox" },
+        { "name": "open_valorant",     "syntax": "open_valorant()",           "description": "Open Valorant" },
+        { "name": "open_epic_games",   "syntax": "open_epic_games()",         "description": "Open Epic Games Launcher" },
+        { "name": "open_docker",       "syntax": "open_docker()",             "description": "Open Docker Desktop" },
+        { "name": "open_postman",      "syntax": "open_postman()",            "description": "Open Postman API client" }
+      ]
+    },
+    "browser_control": {
+      "description": "Open URLs, search the web, and navigate in the browser",
+      "commands": [
+        { "name": "open_url",          "syntax": "open_url(\"url\")",          "description": "Open a specific URL in the default browser" },
+        { "name": "search_google",     "syntax": "search_google(\"query\")",   "description": "Open a Google search for the given query" },
+        { "name": "search_youtube",    "syntax": "search_youtube(\"query\")",  "description": "Open a YouTube search for the given query" },
+        { "name": "search_wikipedia",  "syntax": "search_wikipedia(\"query\")","description": "Open a Wikipedia search for the given topic" },
+        { "name": "search_github",     "syntax": "search_github(\"query\")",   "description": "Open a GitHub search for the given query" },
+        { "name": "open_youtube",      "syntax": "open_youtube()",            "description": "Open YouTube homepage" },
+        { "name": "open_github",       "syntax": "open_github()",             "description": "Open GitHub" },
+        { "name": "open_netflix",      "syntax": "open_netflix()",            "description": "Open Netflix" },
+        { "name": "open_twitter",      "syntax": "open_twitter()",            "description": "Open Twitter / X" },
+        { "name": "open_reddit",       "syntax": "open_reddit()",             "description": "Open Reddit" },
+        { "name": "open_chatgpt",      "syntax": "open_chatgpt()",            "description": "Open ChatGPT in browser" },
+        { "name": "open_gmail",        "syntax": "open_gmail()",              "description": "Open Gmail in browser" },
+        { "name": "open_google_maps",  "syntax": "open_google_maps()",        "description": "Open Google Maps" },
+        { "name": "navigate_to",       "syntax": "navigate_to(\"location\")",  "description": "Open Google Maps directions to a location" },
+        { "name": "new_incognito",     "syntax": "new_incognito()",           "description": "Open a new Chrome incognito window" }
+      ]
+    },
+    "file_operations": {
+      "description": "Create, open, move, copy, rename, and delete files and folders",
+      "commands": [
+        { "name": "open_file",         "syntax": "open_file(\"path\")",                "description": "Open a file with its default application" },
+        { "name": "open_folder",       "syntax": "open_folder(\"path\")",              "description": "Open a folder in File Explorer" },
+        { "name": "create_file",       "syntax": "create_file(\"path\")",              "description": "Create a new empty file at the given path" },
+        { "name": "delete_file",       "syntax": "delete_file(\"path\")",              "description": "Send a file to the Recycle Bin" },
+        { "name": "copy_file",         "syntax": "copy_file(\"src\", \"dst\")",        "description": "Copy a file from source to destination" },
+        { "name": "move_file",         "syntax": "move_file(\"src\", \"dst\")",        "description": "Move a file from source to destination" },
+        { "name": "rename_file",       "syntax": "rename_file(\"path\", \"name\")",    "description": "Rename a file. Provide current full path and new name only" },
+        { "name": "create_folder",     "syntax": "create_folder(\"path\")",            "description": "Create a new folder at the given path" },
+        { "name": "write_to_file",     "syntax": "write_to_file(\"path\", \"text\")",  "description": "Append text to a file, creating it if needed" },
+        { "name": "search_file",       "syntax": "search_file(\"name\")",              "description": "Open Windows Search to find a file by name" }
+      ]
+    },
+    "spotify": {
+      "description": "Control Spotify playback and search",
+      "commands": [
+        { "name": "spotify_play",          "syntax": "spotify_play()",              "description": "Resume Spotify playback" },
+        { "name": "spotify_pause",         "syntax": "spotify_pause()",             "description": "Pause Spotify" },
+        { "name": "spotify_next",          "syntax": "spotify_next()",              "description": "Skip to next track" },
+        { "name": "spotify_previous",      "syntax": "spotify_previous()",          "description": "Go to previous track" },
+        { "name": "spotify_shuffle",       "syntax": "spotify_shuffle()",           "description": "Toggle shuffle mode" },
+        { "name": "spotify_volume_up",     "syntax": "spotify_volume_up()",         "description": "Increase Spotify volume" },
+        { "name": "spotify_volume_down",   "syntax": "spotify_volume_down()",       "description": "Decrease Spotify volume" },
+        { "name": "spotify_like",          "syntax": "spotify_like()",              "description": "Like the current track" },
+        { "name": "spotify_search",        "syntax": "spotify_search(\"query\")",   "description": "Search Spotify for a song or artist" },
+        { "name": "spotify_play_playlist", "syntax": "spotify_play_playlist(\"name\")", "description": "Search and open a playlist by name" },
+        { "name": "spotify_play_artist",   "syntax": "spotify_play_artist(\"name\")",   "description": "Open an artist page on Spotify" },
+        { "name": "spotify_current_song",  "syntax": "spotify_current_song()",      "description": "Announce the currently playing song" }
+      ]
+    },
+    "discord": {
+      "description": "Control Discord voice and application",
+      "commands": [
+        { "name": "discord_mute",       "syntax": "discord_mute()",       "description": "Mute Discord microphone (Ctrl+Shift+M)" },
+        { "name": "discord_unmute",     "syntax": "discord_unmute()",     "description": "Unmute Discord microphone" },
+        { "name": "discord_deafen",     "syntax": "discord_deafen()",     "description": "Toggle Discord deafen (Ctrl+Shift+D)" },
+        { "name": "discord_disconnect", "syntax": "discord_disconnect()", "description": "Disconnect from Discord voice channel" }
+      ]
+    },
+    "information": {
+      "description": "Get real-time system and internet information",
+      "commands": [
+        { "name": "get_time",        "syntax": "get_time()",              "description": "Announce the current local time. Do not add tts() after this." },
+        { "name": "get_date",        "syntax": "get_date()",              "description": "Announce today's full date. Do not add tts() after this." },
+        { "name": "get_weather",     "syntax": "get_weather(\"city\")",   "description": "Fetch and announce current weather for a city. Uses default city if omitted." },
+        { "name": "get_battery",     "syntax": "get_battery()",           "description": "Announce battery percentage and charge status." },
+        { "name": "get_ip",          "syntax": "get_ip()",                "description": "Announce the public IP address." },
+        { "name": "calculate",       "syntax": "calculate(\"expr\")",     "description": "Evaluate and announce a math expression." },
+        { "name": "get_system_stats","syntax": "get_system_stats()",      "description": "Announce CPU, RAM, and disk usage." },
+        { "name": "define_word",     "syntax": "define_word(\"word\")",   "description": "Open a Google dictionary search for a word." },
+        { "name": "get_news",        "syntax": "get_news()",              "description": "Open Google News in the browser." }
+      ]
+    },
+    "productivity": {
+      "description": "Timers, alarms, reminders, notes, and to-do lists",
+      "commands": [
+        { "name": "set_timer",      "syntax": "set_timer(seconds, \"label\")",      "description": "Start a countdown timer. Convert minutes to seconds first (10 min = 600)." },
+        { "name": "set_alarm",      "syntax": "set_alarm(\"HH:MM\", \"label\")",    "description": "Set an alarm for a specific time in 24-hour format." },
+        { "name": "set_reminder",   "syntax": "set_reminder(\"delay\", \"msg\")",   "description": "Set a reminder. Delay: 30m, 2h, 90s, or HH:MM." },
+        { "name": "create_note",    "syntax": "create_note(\"content\")",           "description": "Save a timestamped note to the notes file." },
+        { "name": "read_notes",     "syntax": "read_notes()",                       "description": "Read all saved notes aloud." },
+        { "name": "add_todo",       "syntax": "add_todo(\"task\")",                 "description": "Add a task to the to-do list." },
+        { "name": "read_todos",     "syntax": "read_todos()",                       "description": "Read all to-do items aloud." },
+        { "name": "clear_todos",    "syntax": "clear_todos()",                      "description": "Clear all to-do items." },
+        { "name": "start_pomodoro", "syntax": "start_pomodoro()",                   "description": "Start a 25-minute focus timer." }
+      ]
+    },
+    "media_control": {
+      "description": "System media key simulation",
+      "commands": [
+        { "name": "media_play_pause", "syntax": "media_play_pause()", "description": "Simulate the Play/Pause media key" },
+        { "name": "media_next",       "syntax": "media_next()",       "description": "Simulate the Next Track media key" },
+        { "name": "media_previous",   "syntax": "media_previous()",   "description": "Simulate the Previous Track media key" },
+        { "name": "media_stop",       "syntax": "media_stop()",       "description": "Simulate the Stop media key" }
+      ]
+    },
+    "window_management": {
+      "description": "Arrange and control application windows",
+      "commands": [
+        { "name": "minimize_window", "syntax": "minimize_window()", "description": "Minimize the active window" },
+        { "name": "maximize_window", "syntax": "maximize_window()", "description": "Maximize the active window" },
+        { "name": "close_window",    "syntax": "close_window()",    "description": "Close the active window (Alt+F4)" },
+        { "name": "snap_left",       "syntax": "snap_left()",       "description": "Snap active window to the left half of the screen" },
+        { "name": "snap_right",      "syntax": "snap_right()",      "description": "Snap active window to the right half of the screen" }
+      ]
+    },
+    "typing_input": {
+      "description": "Simulate keyboard input and shortcuts",
+      "commands": [
+        { "name": "type_text",  "syntax": "type_text(\"text\")",  "description": "Type text character by character into the active field" },
+        { "name": "press_key",  "syntax": "press_key(\"key\")",   "description": "Press a single key e.g. enter, esc, f5, tab" },
+        { "name": "hotkey",     "syntax": "hotkey(\"keys\")",     "description": "Execute a keyboard shortcut e.g. ctrl+c, alt+f4" },
+        { "name": "paste_text", "syntax": "paste_text(\"text\")", "description": "Copy text to clipboard and paste it with Ctrl+V" }
+      ]
+    },
+    "assistant": {
+      "description": "Core FRIDAY utility commands",
+      "commands": [
+        { "name": "tts",         "syntax": "tts(\"text\")",    "description": "Speak text aloud. Always end command chains with this." },
+        { "name": "respond",     "syntax": "respond(\"text\")", "description": "Alias for tts(). Use for conversational replies." },
+        { "name": "wait",        "syntax": "wait(seconds)",    "description": "Pause for given seconds before the next command. Use when apps need time to load." },
+        { "name": "run_script",  "syntax": "run_script(\"path\")", "description": "Run a Python or batch script file." },
+        { "name": "run_command", "syntax": "run_command(\"cmd\")", "description": "Execute a shell command in the background." }
+      ]
+    }
+  }
+}

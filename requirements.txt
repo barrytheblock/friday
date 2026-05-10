@@ -1,0 +1,27 @@
+# FRIDAY AI Assistant — Dependencies
+# Install with: pip install -r requirements.txt
+
+# AI
+groq>=0.9.0
+
+# Voice
+edge-tts>=6.1.9          # TTS voice
+pygame>=2.5.0            # Audio playback
+faster-whisper>=1.0.0    # Local speech recognition (no API needed)
+sounddevice>=0.4.6       # Microphone recording
+pyttsx3>=2.90            # Offline TTS fallback
+
+# System Automation
+pyautogui>=0.9.54        # Keyboard/mouse simulation
+psutil>=5.9.0            # System stats and process management
+pygetwindow>=0.0.9       # Window management
+pyperclip>=1.8.2         # Clipboard access
+pycaw>=20230317          # Windows audio volume control
+screen-brightness-control>=0.23.0
+
+# Utilities
+requests>=2.31.0         # HTTP (weather, remote commands.json)
+send2trash>=1.8.0        # Safe file deletion to recycle bin
+
+# Windows only
+winshell>=0.6            # Empty recycle bin
