@@ -1,4 +1,4 @@
-# F.R.I.D.A.Y. — AI Voice Assistant
+# F.R.I.D.A.Y.
 
 A locally-running AI voice assistant powered by Groq and Whisper.
 Wake-word activated, female British voice, 130+ system commands.
