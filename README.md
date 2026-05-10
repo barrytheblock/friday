@@ -144,8 +144,3 @@ Change `TTS_VOICE` in `config.py`:
 | TTS not working | Check internet connection (edge-tts needs it) |
 | Groq quota error | Switch `GROQ_MODEL` to `"llama-3.1-8b-instant"` |
 
----
-
-## License
-
-MIT — do whatever you want with it.
